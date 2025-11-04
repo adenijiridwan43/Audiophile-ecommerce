@@ -9,8 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@hookform/resolvers": "^5.2.2",
+    "@next/swc-win32-x64-msvc": "^16.0.1",
+    "@radix-ui/react-slot": "^1.2.3",
     "@react-email/components": "^0.5.7",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "convex": "^1.28.2",
     "lucide-react": "^0.552.0",

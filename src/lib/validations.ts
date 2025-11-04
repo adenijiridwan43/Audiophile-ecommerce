@@ -1,7 +1,7 @@
 // src/lib/validations.ts - Zod validation schemas
 
 import { z } from 'zod';
-import { VALIDATION, ERROR_MESSAGES } from '@/lib/contants';
+import { VALIDATION, ERROR_MESSAGES } from '@/lib/constants';
 
 // ============================================
 // BILLING DETAILS SCHEMA
@@ -146,16 +146,16 @@ export function validateQuantity(quantity: number) {
 // ============================================
 // FORMAT ZOD ERRORS FOR DISPLAY
 // ============================================
-export function formatZodErrors(errors: z.ZodError) {
-  const formattedErrors: Record<string, string> = {};
+// export function formatZodErrors(errors: z.ZodError) {
+//   const formattedErrors: Record<string, string> = {};
   
-  errors.errors.forEach((error) => {
-    const path = error.path.join('.');
-    formattedErrors[path] = error.message;
-  });
+//   errors.errors.forEach((error) => {
+//     const path = error.path.join('.');
+//     formattedErrors[path] = error.message;
+//   });
   
-  return formattedErrors;
-}
+//   return formattedErrors;
+// }
 
 // ============================================
 // FIELD-LEVEL VALIDATORS (for real-time validation)

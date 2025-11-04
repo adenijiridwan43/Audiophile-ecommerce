@@ -1,7 +1,7 @@
 // src/lib/utils.ts - Utility functions and calculations
 
 import { CartItem, CartTotals } from '@/types/index';
-import { SHIPPING_COST, VAT_RATE } from '@/lib/contants';
+import { SHIPPING_COST, VAT_RATE } from '@/lib/constants';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
