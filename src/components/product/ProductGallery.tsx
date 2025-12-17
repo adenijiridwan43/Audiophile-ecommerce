@@ -18,6 +18,7 @@ export function ProductGallery({ gallery }: ProductGalleryProps) {
             src={gallery.first.desktop}
             alt="Product gallery image 1"
             fill
+            sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
             className="object-cover"
           />
         </div>
@@ -28,16 +29,18 @@ export function ProductGallery({ gallery }: ProductGalleryProps) {
             src={gallery.second.desktop}
             alt="Product gallery image 2"
             fill
+            sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
             className="object-cover"
           />
         </div>
 
         {/* Third Image - Takes 2 columns */}
-        <div className="col-span-2 relative rounded-lg overflow-hidden aspect-2/1 lg:aspect-square">
+        <div className="col-span-2 relative rounded-lg overflow-hidden aspect-video lg:aspect-square">
           <Image
             src={gallery.third.desktop}
             alt="Product gallery image 3"
             fill
+            sizes="(min-width:1024px) 50vw, 100vw"
             className="object-cover"
           />
         </div>

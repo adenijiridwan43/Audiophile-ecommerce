@@ -9,16 +9,13 @@ import { CategoryLinks } from '@/components/shared/CategoryLinks';
 import { BestGear } from '@/components/shared/BestGear';
 import { products } from '@/data/products';
 
-interface ProductPageProps {
-  params: Promise<{
-    category: string;
-    slug: string;
-  }>;
-}
-
-// ✅ Await params in async page component
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { category, slug } = await params;
+export default async function ProductPage({
+  params,
+}: {
+  params: any;
+}) {
+  const resolved = await params;
+  const { category, slug } = resolved;
 
   // Find product
   const product = products.find(
@@ -62,9 +59,11 @@ export function generateStaticParams() {
   }));
 }
 
-// ✅ Make metadata generation async and await params
-export async function generateMetadata({ params }: ProductPageProps) {
-  const { category, slug } = await params;
+// ✅ Make metadata generation accept params directly
+export async function generateMetadata({ params }: { params: any }) {
+  // unwrap params in case it's a Promise (Next may pass a Promise)
+  const resolved = await params;
+  const { category, slug } = resolved;
 
   const product = products.find(
     (p) => p.category === category && p.slug === slug

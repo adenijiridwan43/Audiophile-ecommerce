@@ -6,12 +6,14 @@ import { CategoryLinks } from '@/components/shared/CategoryLinks';
 import { BestGear } from '@/components/shared/BestGear';
 import { products } from '@/data/products';
 
-interface CategoryPageProps {
-  params: Promise<{ category: string }>;
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { category } = await params; // ✅ Await the Promise
+export default async function CategoryPage({
+  params,
+}: {
+  params: any;
+}) {
+  // await handles both Promise and direct object
+  const resolved = await params;
+  const { category } = resolved;
 
   // Validate category
   if (!['headphones', 'speakers', 'earphones'].includes(category)) {

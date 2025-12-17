@@ -16,9 +16,6 @@ const config: Config = {
         'light-gray': '#F1F1F1',
         'very-light-gray': '#FAFAFA',
       },
-      fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
-      },
     },
   },
   plugins: [],

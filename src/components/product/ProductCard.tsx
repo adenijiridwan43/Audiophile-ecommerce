@@ -12,15 +12,21 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, reverse = false }: ProductCardProps) {
+  // Handle both string and ProductImage types for categoryImage
+  const categoryImageSrc = typeof product.categoryImage === 'string' 
+    ? product.categoryImage 
+    : product.categoryImage.desktop;
+
   return (
     <article className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
       {/* Product Image */}
       <div className={`order-1 ${reverse ? 'lg:order-2' : ''}`}>
         <div className="relative rounded-lg overflow-hidden bg-light-gray aspect-square">
           <Image
-            src={product.categoryImage}
+            src={categoryImageSrc}
             alt={product.name}
             fill
+            sizes="(min-width:1024px) 40vw, (min-width:768px) 50vw, 100vw"
             className="object-contain p-8"
           />
         </div>

@@ -1,5 +1,21 @@
 /* src/app/globals.css - Global styles */
-@import "tailwindcss";
+
+/* Tailwind directives (required) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define design system CSS variables so existing styles using var(--primary) etc. work */
+:root {
+  --primary: #D87D4A;
+  --primary-hover: #FBAF85;
+  --dark: #101010;
+  --dark-gray: #4C4C4C;
+  --light-gray: #F1F1F1;
+  --very-light-gray: #FAFAFA;
+  --white: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+}
 
 @layer base {
   * {
@@ -212,6 +228,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+   appearance: textfield;
 }
 
 /* Custom selection color */

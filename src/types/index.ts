@@ -9,7 +9,7 @@ export interface Product {
   name: string;
   image: ProductImage;
   category: 'headphones' | 'speakers' | 'earphones';
-  categoryImage: string;
+  categoryImage: ProductImage | string;
   new: boolean;
   price: number;
   description: string;
