@@ -1,20 +1,28 @@
 /* src/app/globals.css - Global styles */
 
-/* Tailwind directives (required) */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind v4 entry point */
+@import "tailwindcss";
+
+/* Custom theme (replaces tailwind.config.ts) */
+@theme {
+  --color-primary: #d87d4a;
+  --color-primary-hover: #fbaf85;
+  --color-dark: #101010;
+  --color-dark-gray: #4c4c4c;
+  --color-light-gray: #f1f1f1;
+  --color-very-light-gray: #fafafa;
+}
 
 /* Define design system CSS variables so existing styles using var(--primary) etc. work */
 :root {
-  --primary: #D87D4A;
-  --primary-hover: #FBAF85;
+  --primary: #d87d4a;
+  --primary-hover: #fbaf85;
   --dark: #101010;
-  --dark-gray: #4C4C4C;
-  --light-gray: #F1F1F1;
-  --very-light-gray: #FAFAFA;
-  --white: #FFFFFF;
-  --border: rgba(0,0,0,0.08);
+  --dark-gray: #4c4c4c;
+  --light-gray: #f1f1f1;
+  --very-light-gray: #fafafa;
+  --white: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
 }
 
 @layer base {
@@ -41,7 +49,9 @@
 
   button:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px var(--primary), 0 0 0 4px white;
+    box-shadow:
+      0 0 0 2px var(--primary),
+      0 0 0 4px white;
   }
 
   /* Input focus styles */
@@ -216,7 +226,9 @@
 /* Custom focus styles for accessibility */
 *:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--primary), 0 0 0 4px white;
+  box-shadow:
+    0 0 0 2px var(--primary),
+    0 0 0 4px white;
 }
 
 /* Remove number input spinners */
@@ -228,7 +240,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
-   appearance: textfield;
+  appearance: textfield;
 }
 
 /* Custom selection color */
