@@ -6,25 +6,29 @@ import React from 'react';
 import { ConvexProvider, ConvexReactClient } from 'convex/react';
 import { CartProvider } from '@/store/context/CartContext';
 
-// Lazy-initialize to avoid crashing during SSG prerendering
+// Lazy singleton — only created once, only when the URL is available
 let convexClient: ConvexReactClient | null = null;
-function getConvexClient() {
-  if (!convexClient) {
-    const url = process.env.NEXT_PUBLIC_CONVEX_URL;
-    if (!url) {
-      throw new Error(
-        'NEXT_PUBLIC_CONVEX_URL is not set. ' +
-        'Add it to .env.local locally or to your Vercel environment variables.'
-      );
-    }
-    convexClient = new ConvexReactClient(url);
-  }
+function getConvexClient(): ConvexReactClient | null {
+  if (convexClient) return convexClient;
+
+  const url = process.env.NEXT_PUBLIC_CONVEX_URL;
+  if (!url) return null; // gracefully skip during SSG prerendering
+
+  convexClient = new ConvexReactClient(url);
   return convexClient;
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const client = getConvexClient();
+
+  // During SSG prerendering the Convex URL is not available.
+  // Render children without Convex — static pages don't need it.
+  if (!client) {
+    return <CartProvider>{children}</CartProvider>;
+  }
+
   return (
-    <ConvexProvider client={getConvexClient()}>
+    <ConvexProvider client={client}>
       <CartProvider>
         {children}
       </CartProvider>

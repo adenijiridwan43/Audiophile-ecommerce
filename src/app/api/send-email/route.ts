@@ -6,15 +6,6 @@ import { render } from '@react-email/components';
 import { OrderConfirmationEmail } from '../../../../emails/OrderConfirmation';
 import { EmailData } from '@/types/index';
 
-// Create Gmail SMTP transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
-
 export async function POST(request: NextRequest) {
   try {
     const emailData: EmailData = await request.json();
@@ -35,6 +26,15 @@ export async function POST(request: NextRequest) {
         { status: 503 }
       );
     }
+
+    // Create transporter inside handler (not at module level) to avoid build-time issues
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    });
 
     // Render the React Email template to HTML
     const html = await render(
